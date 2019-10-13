@@ -1,0 +1,70 @@
+﻿@model List<ProductListView>
+
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+
+    <div class="col-md-12">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h5 class="card-title">Ürünler</h5>
+
+            </div>
+
+            <div class="table-responsive">
+
+
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>Ürün Id</th>
+                            <th>Ürün Adı </th>
+                            <th>Kategori </th>
+                            <th>Birim Fiyat</th>
+                            <th>Stok</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ProductID</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@item.UnitsInStock</td>
+
+                                <td class="table-action"></td>
+
+                            </tr>
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+</div>
+

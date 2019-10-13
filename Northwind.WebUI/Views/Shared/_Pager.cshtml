@@ -1,0 +1,35 @@
+﻿@model PageModel
+
+@{
+    int SayfaAdet = (Model.List_Count + (Model.Page_Count - (Model.List_Count % Model.Page_Count))) / Model.Page_Count;
+
+    int SayfaBas = (Model.page - 10)>=1 ? Model.page-10 : 1;
+    int SayfaBit = (Model.page + 10) <=SayfaAdet ? Model.page + 10 : SayfaAdet;
+
+}
+
+
+<ul class="pagination float-right">
+
+
+    <li class="page-item">
+        <a class="page-link" href="@Model.Page_Url&page=@(Model.page-1)" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+
+
+    @for (int i = SayfaBas; i <= SayfaBit; i++)
+    {
+        <li class="page-item @(i==Model.page?"active":"")"><a class="page-link" href="@Model.Page_Url&page=@i">@i</a></li>
+    }
+
+
+    <li class="page-item">
+        <a class="page-link" href="@Model.Page_Url&page=@(Model.page+1)" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+
+
+</ul>

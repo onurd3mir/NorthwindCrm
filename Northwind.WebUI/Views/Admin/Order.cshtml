@@ -1,0 +1,214 @@
+﻿@model OrderModelView
+
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+
+
+    <div class="col-md-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h5 class="card-title">Siparişler</h5>
+
+                <form asp-action="order" method="post">
+
+                    <div class="row">
+
+                        <div class="form-group col-md-2">
+                            <label>Baş. Tarih</label>
+                            <input asp-for="Bastar" class="form-control" />
+
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Bit. Tarih</label>
+                            <input asp-for="Bittar" class="form-control" />
+
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Müşteri</label>
+                            <input asp-for="Customer" class="form-control" />
+
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Şehir</label>
+                            <input asp-for="City" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-12">
+                            <input type="submit" value="Sorgula" class="btn btn-primary" />
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+
+
+            <div class="table-responsive">
+
+
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tarih </th>
+                            <th>Müşteri </th>
+                            <th>Adres</th>
+                            <th>Şehir</th>
+                            <th>Ülke</th>
+                            <th>Personel</th>
+                            <th>Detay</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                        @foreach (var item in Model.orderListViews)
+                        {
+                            <tr>
+                                <td>@item.OrderID</td>
+                                <td>@item.OrderDate</td>
+                                <td>@item.ContactName</td>
+                                <td>@item.ShipAddress</td>
+                                <td>@item.ShipCity</td>
+                                <td>@item.ShipCountry</td>
+                                <td>@item.LastName @item.FirstName</td>
+
+                                <td class="table-action"></td>
+
+                            </tr>
+                        }
+
+
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+
+        </div>
+
+
+        @await Html.PartialAsync("_Pager", Model.pageModel)
+
+    </div>
+
+
+
+</div>
+
+@section scripts {
+
+    <script>
+
+        $(function () {
+
+            $("input[name=\"Bastar\"]").daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: "DD.MM.YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Uygula",
+                    "cancelLabel": "Vazgeç",
+                    "fromLabel": "Dan",
+                    "toLabel": "a",
+                    "customRangeLabel": "Seç",
+                    "daysOfWeek": [
+                        "Pt",
+                        "Sl",
+                        "Çr",
+                        "Pr",
+                        "Cm",
+                        "Ct",
+                        "Pz"
+                    ],
+                    "monthNames": [
+                        "Ocak",
+                        "Şubat",
+                        "Mart",
+                        "Nisan",
+                        "Mayıs",
+                        "Haziran",
+                        "Temmuz",
+                        "Ağustos",
+                        "Eylül",
+                        "Ekim",
+                        "Kasım",
+                        "Aralık"
+                    ],
+                    "firstDay": 1
+                }
+            });
+
+            $("input[name=\"Bittar\"]").daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: "DD.MM.YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Uygula",
+                    "cancelLabel": "Vazgeç",
+                    "fromLabel": "Dan",
+                    "toLabel": "a",
+                    "customRangeLabel": "Seç",
+                    "daysOfWeek": [
+                        "Pt",
+                        "Sl",
+                        "Çr",
+                        "Pr",
+                        "Cm",
+                        "Ct",
+                        "Pz"
+                    ],
+                    "monthNames": [
+                        "Ocak",
+                        "Şubat",
+                        "Mart",
+                        "Nisan",
+                        "Mayıs",
+                        "Haziran",
+                        "Temmuz",
+                        "Ağustos",
+                        "Eylül",
+                        "Ekim",
+                        "Kasım",
+                        "Aralık"
+                    ],
+                    "firstDay": 1
+                }
+            });
+
+        });
+
+    </script>
+
+
+}
+
+
+
